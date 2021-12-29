@@ -1,1 +1,7 @@
-# ESP32-CAM-SMART-TRAFFIC-LIGHT
+# ESP32-CAM Traffic Violation Detection System
+
+## Requirements & Dependencies
+
+## Design System
+
+## Instalations
