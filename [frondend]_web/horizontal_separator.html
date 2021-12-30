@@ -159,7 +159,6 @@
                       </tr>             
                       <tr><td><input type="checkbox" id="chkAud">Alarm(mp3)</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
                       <tr><td><input type="checkbox" id="chkBuzzer">Buzzer(IO2)</td><td></td></tr>
-                      <tr><td colspan="2"><input type="checkbox" id="chkLine">Line Token<input type="text" id="token" size="10" value=""><input type="button" value="Send Still" onclick="SendCapturedImage();"></td></tr> 
                       <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
                     </tbody></table> 
                   </td>
@@ -425,7 +424,7 @@
             context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
                        
             Model.detect(canvas).then(Predictions => {    
-              var objectCount=0;  //紀錄偵測到物件總數
+              var objectCount=0; 
               context.strokeStyle = 'yellow';
               context.lineWidth = 5;    
               context.beginPath();

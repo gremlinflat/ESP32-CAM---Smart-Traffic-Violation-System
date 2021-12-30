@@ -146,7 +146,6 @@
                       </tr>         
                       <tr><td><input type="checkbox" id="chkAud">Alarm(mp3)</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
                       <tr><td><input type="checkbox" id="chkBuzzer">Buzzer(IO2)</td><td></td></tr>
-                      <tr><td colspan="2"><input type="checkbox" id="chkLine">Line Token<input type="text" id="token" size="10" value=""><input type="button" value="Send Still" onclick="SendCapturedImage();"></td></tr> 
                       <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
                     </tbody></table> 
                   </td>
@@ -161,7 +160,7 @@
                     <input type="checkbox" id="nav-toggle-cb">
                     <nav id="menu">
                         <div class="input-group" id="flash-group">
-                            <label for="flash">Falsh</label>
+                            <label for="flash">Flash</label>
                             <div class="range-min">0</div>
                             <input type="range" id="flash" min="0" max="255" value="0" class="default-action">
                             <div class="range-max">255</div>
@@ -314,7 +313,6 @@
               streamButton.innerHTML = 'Stop Stream'
             }
 
-            //新增重啟電源按鈕點選事件 (自訂指令格式：http://192.168.xxx.xxx/control?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9)
             restartButton.onclick = () => {
               fetch(baseHost+"/control?restart");
             } 
@@ -460,7 +458,7 @@
             }  
           
             Model.detect(canvas).then(Predictions => {    
-              var objectCount=0;  //紀錄偵測到物件總數
+              var objectCount=0; 
     
               //console.log('Predictions: ', Predictions);
               if (Predictions.length>0) {
@@ -516,9 +514,7 @@
                       if (chkAud.checked) {
                         alarm.src = aud.value;
                         alarm.play();
-                      }
-                      if (chkLine.checked)
-                        ifr.src = 'http:\/\/linenotify.com/notify.php?token='+token.value+'&message=Alarm';                        
+                      }                      
                       if (chkBuzzer.checked)
                         $.ajax({url: baseHost+'/control?buzzer', async: false});  
                       }
@@ -554,7 +550,6 @@
             myForm.submit();
           }
 
-          //  網址/?192.168.1.38  可自動帶入?後參數IP值
           var href=location.href;
           if (href.indexOf("?")!=-1) {
             ip.value = location.search.split("?")[1].replace(/http:\/\//g,"");
