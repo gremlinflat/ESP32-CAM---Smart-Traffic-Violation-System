@@ -211,3 +211,17 @@ void setup() {
 void loop {
     
 }
+
+//-----------------------------------image encoding function-----------------------------------------------------------
+static size_t jpg_encode_stream(void * arg, size_t index, const void* data, size_t len){
+    jpg_chunking_t *j = (jpg_chunking_t *)arg;
+    if(!index){
+        j->len = 0;
+    }
+    if(httpd_resp_send_chunk(j->req, (const char *)data, len) != ESP_OK){
+        return 0;
+    }
+    j->len += len;
+    return len;
+}
+//----------------------------------------------------------------------------------------------------------------------
