@@ -431,7 +431,8 @@ static const char index_Horizontal_html[] PROGMEM = R"rawliteral(
                         <input id="complementary" type="checkbox">Complementary Area
                         </td>           
                       </tr>             
-                      <tr><td><input type="checkbox" id="chkAud">Alarm(mp3)</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
+                      <tr><td><input type="checkbox" id="chkAud">Alarm(mp3)</td><td><input type="text" id="aud" size="20" value="
+                      https://raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Bfrondend%5D_web/mixkit-facility-alarm-908.mp3"></td></tr> 
                       <tr><td><input type="checkbox" id="chkBuzzer">Buzzer(IO2)</td><td></td></tr>
                       <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
                     </tbody></table> 
@@ -1028,7 +1029,7 @@ static const char index_Vertical_html[] PROGMEM = R"rawliteral(
                         <input id="complementary" type="checkbox">Complementary Area
                         </td>           
                       </tr>          
-                      <tr><td><input type="checkbox" id="chkAud">Alarm(mp3)</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
+                      <tr><td><input type="checkbox" id="chkAud">Alarm(mp3)</td><td><input type="text" id="aud" size="20" value="https://raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Bfrondend%5D_web/mixkit-facility-alarm-908.mp3"></td></tr> 
                       <tr><td><input type="checkbox" id="chkBuzzer">Buzzer(GPIO 2)</td><td></td></tr>
                       <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
                     </tbody></table> 
@@ -1589,7 +1590,7 @@ static const char index_Rectangular_html[] PROGMEM = R"rawliteral(
                           <input id="complementary" type="checkbox">Complementary Area
                         </td>
                       </tr>         
-                      <tr><td><input type="checkbox" id="chkAud">Alarm(mp3)</td><td><input type="text" id="aud" size="20" value="https:\/\/fustyles.github.io/webduino/paino_c.mp3"></td></tr> 
+                      <tr><td><input type="checkbox" id="chkAud">Alarm(mp3)</td><td><input type="text" id="aud" size="20" value="https://raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Bfrondend%5D_web/mixkit-facility-alarm-908.mp3"></td></tr> 
                       <tr><td><input type="checkbox" id="chkBuzzer">Buzzer(IO2)</td><td></td></tr>
                       <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
                     </tbody></table> 
