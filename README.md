@@ -16,7 +16,9 @@ This Project is build over giant shoulder such
 ## How does it works?
 ![Architecure System](https://raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Breadme%5D/System%20Architecture.png)
 
-![wiring diagram (To-be updated)]()
+
+wiring diagram
+![wiring diagram](https://raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Breadme%5D/wiring%20diagram.jpg)
 ## Instalations
 //dont forget to downgrade esp32 to version 1.0.4
 ## References
