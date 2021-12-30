@@ -62,6 +62,20 @@ String wifi_password ="123456789";
 // Access Point configuration
 const char* apssid = "Smart_Traffic 18";
 const char* appassword = "123456789";
+// command parameter definition
+String Feedback="";
+
+String Command="";
+String cmd="";
+String P1="";
+String P2="";
+String P3="";
+String P4="";
+String P5="";
+String P6="";
+String P7="";
+String P8="";
+String P9="";
 
 void setup() {
   //to-do : fail-safe ketika arus tidak stabil
@@ -253,3 +267,36 @@ String Preferences_read(const char * name, const char* key) {
   return myData;
 }
 //------------------------------------------------------------------------------------------------------------------
+
+//---------------------Custom Parameter------------------------------------------------------
+// references : https://github.com/fustyles/Arduino/blob/master/ESP32-CAM_Tensorflow.js/ESP32-CAM_coco-ssd_CautionArea/ESP32-CAM_coco-ssd_CautionArea.ino
+void getCommand(char c)
+{
+  if (c=='?') ReceiveState=1;
+  if ((c==' ')||(c=='\r')||(c=='\n')) ReceiveState=0;
+  
+  if (ReceiveState==1)
+  {
+    Command=Command+String(c);
+    
+    if (c=='=') cmdState=0;
+    if (c==';') strState++;
+  
+    if ((cmdState==1)&&((c!='?')||(questionstate==1))) cmd=cmd+String(c);
+    if ((cmdState==0)&&(strState==1)&&((c!='=')||(equalstate==1))) P1=P1+String(c);
+    if ((cmdState==0)&&(strState==2)&&(c!=';')) P2=P2+String(c);
+    if ((cmdState==0)&&(strState==3)&&(c!=';')) P3=P3+String(c);
+    if ((cmdState==0)&&(strState==4)&&(c!=';')) P4=P4+String(c);
+    if ((cmdState==0)&&(strState==5)&&(c!=';')) P5=P5+String(c);
+    if ((cmdState==0)&&(strState==6)&&(c!=';')) P6=P6+String(c);
+    if ((cmdState==0)&&(strState==7)&&(c!=';')) P7=P7+String(c);
+    if ((cmdState==0)&&(strState==8)&&(c!=';')) P8=P8+String(c);
+    if ((cmdState==0)&&(strState>=9)&&((c!=';')||(semicolonstate==1))) P9=P9+String(c);
+    
+    if (c=='?') questionstate=1;
+    if (c=='=') equalstate=1;
+    if ((strState>=9)&&(c==';')) semicolonstate=1;
+  }
+}
+// --------------------------------------------------------------------------
+
