@@ -299,7 +299,15 @@ void getCommand(char c)
   }
 }
 // --------------------------------------------------------------------------
+void tone(int pin, int frequency, int duration) {
+  ledcSetup(9, 2000, 8);
+  ledcAttachPin(pin, 9);
+  ledcWriteTone(9, frequency);
+  delay(duration);
+  ledcWriteTone(9, 0);
+}
 
+// ------------------------- Master Function ---------------------------------
 void startCameraServer(){
   httpd_config_t config = HTTPD_DEFAULT_CONFIG();
 
@@ -391,3 +399,4 @@ void startCameraServer(){
       httpd_register_uri_handler(stream_httpd, &stream_uri);
   }
 }
+// --------------------------------------------------------------------------
