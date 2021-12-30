@@ -225,3 +225,31 @@ static size_t jpg_encode_stream(void * arg, size_t index, const void* data, size
     return len;
 }
 //----------------------------------------------------------------------------------------------------------------------
+// interface translation for cautions area (angle)
+int transferAngle(int angle, String side) {     
+  if (angle > 180)
+     angle = 180;
+  else if (angle < 0)
+    angle = 0;
+  if (side="right")
+    angle = 180 - angle;     
+  return angle*6300/180+1700;
+}
+
+//---------------------------Read/Write saved configuration function---------------------------------------------------
+void Preferences_write(const char * name, const char* key, const char* value) {
+  preferences.clear();
+  preferences.begin(name, false);
+  Serial.printf("Put %s = %s\n", key, value);
+  preferences.putString(key, value);
+  preferences.end();
+}
+
+String Preferences_read(const char * name, const char* key) {
+  preferences.begin(name, false);
+  String myData = preferences.getString(key, "");
+  Serial.printf("Get %s = %s\n", key, myData);
+  preferences.end();
+  return myData;
+}
+//------------------------------------------------------------------------------------------------------------------
