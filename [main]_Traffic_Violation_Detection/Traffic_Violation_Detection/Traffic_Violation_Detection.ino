@@ -236,16 +236,6 @@ static size_t jpg_encode_stream(void * arg, size_t index, const void* data, size
     return len;
 }
 //----------------------------------------------------------------------------------------------------------------------
-// interface translation for cautions area (angle)
-int transferAngle(int angle, String side) {     
-  if (angle > 180)
-     angle = 180;
-  else if (angle < 0)
-    angle = 0;
-  if (side="right")
-    angle = 180 - angle;     
-  return angle*6300/180+1700;
-}
 
 // -------------------EMBEDDING HTML FILES TO PROGRAM MEMORY--------------------
 static const char index_html[] PROGMEM = R"rawliteral(
