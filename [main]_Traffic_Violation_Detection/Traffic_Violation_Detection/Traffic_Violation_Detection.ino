@@ -77,8 +77,10 @@ String P7="";
 String P8="";
 String P9="";
 
+int Buzzer = 2; // GPIO2
+
 void setup() {
-  //to-do : fail-safe ketika arus tidak stabil
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);   // fail safe ketika arus tidak stabil
   
   Serial.begin(115200);
   Serial.setDebugOutput(true);
@@ -164,7 +166,7 @@ void setup() {
 
   if (wifi_ssid!="") {
     for (int i=0;i<2;i++) {
-      WiFi.begin(wifi_ssid.c_str(), wifi_password.c_str());]
+      WiFi.begin(wifi_ssid.c_str(), wifi_password.c_str());
     
       delay(1000);
       Serial.println("");
@@ -174,27 +176,22 @@ void setup() {
       long int StartTime=millis();
       while (WiFi.status() != WL_CONNECTED) {
           delay(500);
-          if ((StartTime+5000) < millis()) break;]
+          if ((StartTime+5000) < millis()) break;
       } 
     
-      if (WiFi.status() == WL_CONNECTED) {]
-        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);]示客戶端IP         
+      if (WiFi.status() == WL_CONNECTED) {
+        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);         
         Serial.println("");
         Serial.println("STAIP address: ");
         Serial.println(WiFi.localIP());
         Serial.println("");
     
-        for (int i=0;i<5;i++) {]
+        for (int i=0;i<5;i++) {
           ledcWrite(4,10);
           delay(200);
           ledcWrite(4,0);
           delay(200);    
         }
-
-        // line notify API TOKEN
-        if (LineToken != "") 
-          LineNotify_http_get(LineToken, WiFi.localIP().toString());
-        break;
       }
     } 
   }
@@ -222,7 +219,7 @@ void setup() {
   digitalWrite(4, LOW);      
 }
 
-void loop {
+void loop() {
     
 }
 
@@ -827,9 +824,7 @@ static const char index_Horizontal_html[] PROGMEM = R"rawliteral(
                       if (chkAud.checked) {
                         alarm.src = aud.value;
                         alarm.play();
-                      }
-                      if (chkLine.checked)
-                        ifr.src = 'http:\/\/linenotify.com/notify.php?token='+token.value+'&message=Alarm';                      
+                      }                    
                       if (chkBuzzer.checked)
                         $.ajax({url: baseHost+'/control?buzzer='+position.innerHTML, async: false}); 
                       }
@@ -2037,6 +2032,13 @@ static esp_err_t index_handler(httpd_req_t *req){
   return httpd_resp_send(req, (const char *)index_html, strlen(index_html));
 }
 
+static esp_err_t index_wifi_handler(httpd_req_t *req) {
+  httpd_resp_set_type(req, "text/html");
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+  httpd_resp_send(req, (const char *)index_wifi_html, strlen(index_wifi_html));
+  return ESP_OK;
+}
+
 static esp_err_t index_Horizontal_handler(httpd_req_t *req) {
   httpd_resp_set_type(req, "text/html");
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
@@ -2056,6 +2058,25 @@ static esp_err_t index_Rectangular_handler(httpd_req_t *req) {
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_send(req, (const char *)index_Rectangular_html, strlen(index_Rectangular_html));
   return ESP_OK;
+}
+
+static esp_err_t status_handler(httpd_req_t *req){
+    static char json_response[1024];
+
+    sensor_t * s = esp_camera_sensor_get();
+    char * p = json_response;
+    *p++ = '{';
+    p+=sprintf(p, "\"flash\":%d,", 0);
+    p+=sprintf(p, "\"framesize\":%u,", s->status.framesize);
+    p+=sprintf(p, "\"quality\":%u,", s->status.quality);
+    p+=sprintf(p, "\"brightness\":%d,", s->status.brightness);
+    p+=sprintf(p, "\"contrast\":%d,", s->status.contrast);
+    p+=sprintf(p, "\"hmirror\":%u", s->status.hmirror); 
+    *p++ = '}';
+    *p++ = 0;
+    httpd_resp_set_type(req, "application/json");
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+    return httpd_resp_send(req, json_response, strlen(json_response));
 }
 
 static esp_err_t capture_handler(httpd_req_t *req){
@@ -2262,7 +2283,6 @@ static esp_err_t cmd_handler(httpd_req_t *req){
               ledcWrite(4,0);
               delay(300);    
             }
-            LineNotify_http_get(LineToken, WiFi.localIP().toString());
             break;
           }
         }
