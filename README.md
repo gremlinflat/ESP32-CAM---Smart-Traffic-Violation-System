@@ -1,11 +1,13 @@
 # ESP32-CAM Traffic Violation Detection System
 Traffic Violation Detection System is a system that utilize machine learning and embedded device to detect a traffic violation especially on light. The system would/should notify the authorities if it detect an object inside caution area.
 
+
 this project is an Embedded System Final Project developed by **Group 18**
 Group Member | Student ID
 ------------- | -------------
 Fahri Novaldi  | 119140205
 Iqbal Amrulloh | 119140161
+
 ## Requirements & Dependencies
 This Project is build over giant shoulder such
 * ESP32-Cam library by espressif
