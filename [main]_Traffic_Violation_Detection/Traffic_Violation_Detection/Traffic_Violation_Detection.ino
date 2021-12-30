@@ -300,3 +300,94 @@ void getCommand(char c)
 }
 // --------------------------------------------------------------------------
 
+void startCameraServer(){
+  httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+
+  //http://192.168.xxx.xxx/
+  httpd_uri_t index_uri = {
+      .uri       = "/",
+      .method    = HTTP_GET,
+      .handler   = index_handler,
+      .user_ctx  = NULL
+  };
+
+  //http://192.168.xxx.xxx/status
+  httpd_uri_t status_uri = {
+      .uri       = "/status",
+      .method    = HTTP_GET,
+      .handler   = status_handler,
+      .user_ctx  = NULL
+  };
+
+  //http://192.168.xxx.xxx/control
+  httpd_uri_t cmd_uri = {
+      .uri       = "/control",
+      .method    = HTTP_GET,
+      .handler   = cmd_handler,
+      .user_ctx  = NULL
+  }; 
+
+  //http://192.168.xxx.xxx/capture
+  httpd_uri_t capture_uri = {
+      .uri       = "/capture",
+      .method    = HTTP_GET,
+      .handler   = capture_handler,
+      .user_ctx  = NULL
+  };
+
+  //http://192.168.xxx.xxx:81/stream
+  httpd_uri_t stream_uri = {
+      .uri       = "/stream",
+      .method    = HTTP_GET,
+      .handler   = stream_handler,
+      .user_ctx  = NULL
+  };
+  
+  httpd_uri_t wifi_uri = {
+    .uri       = "/wifi",
+    .method    = HTTP_GET,
+    .handler   = index_wifi_handler,
+    .user_ctx  = NULL
+  };   
+  
+  httpd_uri_t Horizontal_uri = {
+    .uri       = "/Horizontal",
+    .method    = HTTP_GET,
+    .handler   = index_Horizontal_handler,
+    .user_ctx  = NULL
+  };
+      
+  httpd_uri_t Vertical_uri = {
+    .uri       = "/Vertical",
+    .method    = HTTP_GET,
+    .handler   = index_Vertical_handler,
+    .user_ctx  = NULL
+  };
+  
+  httpd_uri_t Rect_uri = {
+    .uri       = "/Rectangular",
+    .method    = HTTP_GET,
+    .handler   = index_Rect_handler,
+    .user_ctx  = NULL
+  };
+    
+  Serial.printf("Starting web server on port: '%d'\n", config.server_port);  //Server Port
+  if (httpd_start(&camera_httpd, &config) == ESP_OK) {
+      //http request handler
+      httpd_register_uri_handler(camera_httpd, &index_uri);
+      httpd_register_uri_handler(camera_httpd, &cmd_uri);
+      httpd_register_uri_handler(camera_httpd, &status_uri);
+      httpd_register_uri_handler(camera_httpd, &capture_uri);
+      httpd_register_uri_handler(camera_httpd, &wifi_uri); 
+      httpd_register_uri_handler(camera_httpd, &Horizontal_uri);
+      httpd_register_uri_handler(camera_httpd, &Vertical_uri);
+      httpd_register_uri_handler(camera_httpd, &Rect_uri);
+  }
+  
+  config.server_port += 1;  //Stream Port
+  config.ctrl_port += 1;    //UDP Port
+  Serial.printf("Starting stream server on port: '%d'\n", config.server_port);
+  if (httpd_start(&stream_httpd, &config) == ESP_OK) {
+      httpd_register_uri_handler(stream_httpd, &stream_uri);
+  }
+}
