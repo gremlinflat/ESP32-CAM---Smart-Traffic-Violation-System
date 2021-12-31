@@ -245,14 +245,25 @@ static const char index_html[] PROGMEM = R"rawliteral(
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>Traffic Violation Detection</title>  
+        <style>
+            body{ font-family: Arial, Helvetica, sans-serif; color: #000000; padding: auto; } .landing{ margin: auto; width: 90%; height: 90%; background-color: #fff; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; } .button-wrapper{ margin-top: 1rem; display: flex; flex-direction: row; text-align: center; flex-wrap: wrap; } button{ padding: 1rem; margin: 0.25rem; border: none; border-radius: 0.5rem } .wifi{ background-color: rgb(156, 154, 151); font-weight: 600; color: rgb(49, 49, 49); } .hor{ background-color: rgb(160, 253, 156); font-weight: 600; color: rgb(0, 0, 0); } .ver{ background-color: rgb(160, 253, 156); font-weight: 600; color: rgb(0, 0, 0); } .rect{ background-color: bisque; font-weight: 600; color: rgb(49, 49, 49); }
+        </style>
     </head>
     <body>
-    <button onclick="location.href='/wifi';">Configure Wi-Fi</button>
-    <button onclick="location.href='/Horizontal';">Horizontal Separator</button>
-    <button onclick="location.href='/Vertical';">Vertical Separator</button>
-    <button onclick="location.href='/Rectangular';">Rectangular Separator</button>
+        <div class="landing">
+            
+        <h1>Traffic Violation Detection</h1>
+
+        <div class="button-wrapper">
+            <button class="wifi"
+            onclick="location.href='/wifi';">Wi-Fi Setup</button>
+            <button class="hor" onclick="location.href='/Horizontal';">Horizontal Separator</button>
+            <button  class="ver" onclick="location.href='/Vertical';">Vertical Separator</button>
+            <button class="rect" onclick="location.href='/Rectangular';">Rectangular Separator</button>
+        </div>
+        </div>
     </body>
-</html>         
+</html>   
 )rawliteral";
 
 static const char index_wifi_html[] PROGMEM = R"rawliteral(
@@ -261,14 +272,30 @@ static const char index_wifi_html[] PROGMEM = R"rawliteral(
       <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width,initial-scale=1">
+          <style>
+              body{ font-family: Arial, Helvetica, sans-serif; color: #8c8b8b; } h1{ color: #161616; } label{ color: #161616; } form{ margin-top: 2rem; width: 50%; } .wifi-config{ width: 100%; height: 100%; background-color: #fff; top: 0; left: 0; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; } .wifi-config-form{ display: flex; flex-direction: column; text-align: left; } .wifi-config-form-field{ width: 100%; height: 2.5rem; border-radius: 0.5rem; border-width: 2px; tab-size: 4; -webkit-text-size-adjust: 100%; --tw-text-opacity: 1; box-sizing: border-box; border-style: solid; --tw-shadow: 0 0 #0000; --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/); --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59, 130, 246, 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; margin: 1rem 0; padding: 1rem; --tw-border-opacity: 1; border-color: rgba(209, 213, 219, var(--tw-border-opacity)); --tw-bg-opacity: 1; background-color: rgba(255, 255, 255, var(--tw-bg-opacity)); padding-left: 1rem; font-size: 0.875rem; line-height: 1.25rem; outline: 2px solid transparent; outline-offset: 2px; } .button{ color: rgb(255, 255, 255); font-weight: 600; background-color: #000000; justify-content: center; border-radius: 0.25rem; border: none; cursor: pointer; padding: 0.5rem 1rem; }
+          </style>
           <title>Wifi Configuration - Traffic Violation Detection</title>  
       </head>
       <body>
-      WIFI SSID: <input type="text" id="ssid"><br>
-      WIFI Password: <input type="text" id="pwd"><br>
-      <input type="button" value="Set Wifi!" onclick="location.href='/control?resetwifi='+document.getElementById('ssid').value+';'+document.getElementById('pwd').value;">
+        <div class="wifi-config">
+            <h1><b>Wifi Configuration Setup</b></h1>
+            <form class="wifi-config-form">
+                <div class="wifi-config-form">
+                    <label for="ssid"><b>Wifi SSID</b></label>
+                    <input type="text" name="ssid" id="ssid" placeholder="SSID" class="wifi-config-form-field">
+                </div>
+                <div class="wifi-config-form">
+                    <label for="password"><b>Wifi Password</b></label>
+                    <input type="password" name="password" id="pwd" placeholder="Password" class="wifi-config-form-field">
+                </div>
+                <div class="wifi-config-form">
+                    <input class="button" type="button" value="Set Wifi!" onclick="location.href='/control?resetwifi='+document.getElementById('ssid').value+';'+document.getElementById('pwd').value;">
+                </div>
+            </form>
+        </div>  
       </body>
-  </html>   
+  </html>        
 )rawliteral";
 
 static const char index_Horizontal_html[] PROGMEM = R"rawliteral(
@@ -279,52 +306,52 @@ static const char index_Horizontal_html[] PROGMEM = R"rawliteral(
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>Traffic Violation Detection (Horizontal Separator)</title>
         <style>
-          body{font-family:Arial,Helvetica,sans-serif;background:#181818;color:#EFEFEF;font-size:16px}h2{font-size:18px}section.main{display:flex}#menu,section.main{flex-direction:column}#menu{display:none;flex-wrap:nowrap;min-width:340px;background:#363636;padding:8px;border-radius:4px;margin-top:-10px;margin-right:10px}#content{display:flex;flex-wrap:wrap;align-items:stretch}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}figure img{display:block;width:100%;height:auto;border-radius:4px;margin-top:8px}@media (min-width: 800px) and (orientation:landscape){#content{display:flex;flex-wrap:nowrap;align-items:stretch}figure img{display:block;max-width:100%;max-height:calc(100vh - 40px);width:auto;height:auto}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}}section#buttons{display:flex;flex-wrap:nowrap;justify-content:space-between}#nav-toggle{cursor:pointer;display:block}#nav-toggle-cb{outline:0;opacity:0;width:0;height:0}#nav-toggle-cb:checked+#menu{display:flex}.input-group{display:flex;flex-wrap:nowrap;line-height:22px;margin:5px 0}.input-group>label{display:inline-block;padding-right:10px;min-width:47%}.input-group input,.input-group select{flex-grow:1}.range-max,.range-min{display:inline-block;padding:0 5px}button{display:block;margin:5px;padding:0 12px;border:0;line-height:28px;cursor:pointer;color:#fff;background:#ff3034;border-radius:5px;font-size:16px;outline:0}button:hover{background:#ff494d}button:active{background:#f21c21}button.disabled{cursor:default;background:#a0a0a0}input[type=range]{-webkit-appearance:none;width:100%;height:22px;background:#363636;cursor:pointer;margin:0}input[type=range]:focus{outline:0}input[type=range]::-webkit-slider-runnable-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-webkit-slider-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;-webkit-appearance:none;margin-top:-11.5px}input[type=range]:focus::-webkit-slider-runnable-track{background:#EFEFEF}input[type=range]::-moz-range-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-moz-range-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer}input[type=range]::-ms-track{width:100%;height:2px;cursor:pointer;background:0 0;border-color:transparent;color:transparent}input[type=range]::-ms-fill-lower{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-fill-upper{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;height:2px}input[type=range]:focus::-ms-fill-lower{background:#EFEFEF}input[type=range]:focus::-ms-fill-upper{background:#363636}.switch{display:block;position:relative;line-height:22px;font-size:16px;height:22px}.switch input{outline:0;opacity:0;width:0;height:0}.slider{width:50px;height:22px;border-radius:22px;cursor:pointer;background-color:grey}.slider,.slider:before{display:inline-block;transition:.4s}.slider:before{position:relative;content:"";border-radius:50%;height:16px;width:16px;left:4px;top:3px;background-color:#fff}input:checked+.slider{background-color:#ff3034}input:checked+.slider:before{-webkit-transform:translateX(26px);transform:translateX(26px)}select{border:1px solid #363636;font-size:14px;height:22px;outline:0;border-radius:5px}.image-container{position:relative;min-width:160px}.close{position:absolute;right:5px;top:5px;background:#ff3034;width:16px;height:16px;border-radius:100px;color:#fff;text-align:center;line-height:18px;cursor:pointer}.hidden{display:none}
+          body { font-family: Arial, Helvetica, sans-serif; color: #000000; padding: auto; } h1{ color: #161616; } .container{ margin: auto; width: 90%; height: 90%; background-color: #fff; top: 0; left: 0; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; } p{ margin: 0; } .black-text{ color: #161616; } .row{ display: flex; flex-direction: row; } .mb-3{ margin-bottom: 2rem; } h2 { font-size: 18px; } td{ margin : 0.25rem; } section.main { display: flex; align-items: center; } #menu, section.main { flex-direction: column; } #menu { text-align: left; display: none; flex-wrap: nowrap; min-width: 340px; background: #e2e2e2; border: 1px solid #f21c21; padding: 8px; border-radius: 4px; margin-top: -10px; margin-right: 10px; } #content { display: flex; flex-wrap: wrap; align-items: stretch; } figure { padding: 0; margin: 0; -webkit-margin-before: 0; margin-block-start: 0; -webkit-margin-after: 0; margin-block-end: 0; -webkit-margin-start: 0; margin-inline-start: 0; -webkit-margin-end: 0; margin-inline-end: 0; } figure img { display: block; width: 100%; height: auto; border-radius: 4px; margin-top: 8px; } @media (min-width: 800px) and (orientation: landscape) { #content { display: flex; flex-wrap: nowrap; align-items: stretch; } figure img { display: block; max-width: 100%; max-height: calc(100vh - 40px); width: auto; height: auto; } figure { padding: 0; margin: 0; -webkit-margin-before: 0; margin-block-start: 0; -webkit-margin-after: 0; margin-block-end: 0; -webkit-margin-start: 0; margin-inline-start: 0; -webkit-margin-end: 0; margin-inline-end: 0; } } section#buttons { display: flex; flex-wrap: nowrap;; align-items:center; text-align: center; padding: auto; } #nav-toggle { cursor: pointer; display: block; } #nav-toggle-cb { text-align: left; outline: 0; opacity: 0; width: 0; height: 0; } #nav-toggle-cb:checked + #menu { display: flex; } .input-group { display: flex; flex-wrap: nowrap; line-height: 22px; margin: 5px 0; } .input-group > label { display: inline-block; padding-right: 10px; min-width: 47%; } .input-group input, .input-group select { flex-grow: 1; } .range-max, .range-min { display: inline-block; padding: 0 5px; } button { display: block; margin: 5px; padding: 0 12px; border: 0; line-height: 28px; cursor: pointer; color: #fff; background: #ff3034; border-radius: 5px; font-size: 16px; outline: 0; } button:hover { background: #ff494d; } button:active { background: #f21c21; } button.disabled { cursor: default; background: #a0a0a0; } input[type="range"] { -webkit-appearance: none; width: 100%; height: 22px; background: #e2e2e2; cursor: pointer; margin: 0; } input[type="range"]:focus { outline: 0; } input[type="range"]::-webkit-slider-runnable-track { width: 100%; height: 2px; cursor: pointer; background: #efefef; border-radius: 0; border: 0 solid #efefef; } input[type="range"]::-webkit-slider-thumb { border: 1px solid rgba(0, 0, 30, 0); height: 22px; width: 22px; border-radius: 50px; background: #ff3034; cursor: pointer; -webkit-appearance: none; margin-top: -11.5px; } input[type="range"]:focus::-webkit-slider-runnable-track { background: #efefef; } input[type="range"]::-moz-range-track { width: 100%; height: 2px; cursor: pointer; background: #efefef; border-radius: 0; border: 0 solid #efefef; } input[type="range"]::-moz-range-thumb { border: 1px solid rgba(0, 0, 30, 0); height: 22px; width: 22px; border-radius: 50px; background: #ff3034; cursor: pointer; } input[type="range"]::-ms-track { width: 100%; height: 2px; cursor: pointer; background: 0 0; border-color: transparent; color: transparent; } input[type="range"]::-ms-fill-lower { background: #efefef; border: 0 solid #efefef; border-radius: 0; } input[type="range"]::-ms-fill-upper { background: #efefef; border: 0 solid #efefef; border-radius: 0; } input[type="range"]::-ms-thumb { border: 1px solid rgba(0, 0, 30, 0); height: 22px; width: 22px; border-radius: 50px; background: #ff3034; cursor: pointer; height: 2px; } input[type="range"]:focus::-ms-fill-lower { background: #efefef; } input[type="range"]:focus::-ms-fill-upper { background: #363636; } .switch { display: block; position: relative; line-height: 22px; font-size: 16px; height: 22px; } .switch input { outline: 0; opacity: 0; width: 0; height: 0; } .slider { width: 50px; height: 22px; border-radius: 22px; cursor: pointer; background-color: grey; } .slider, .slider:before { display: inline-block; transition: 0.4s; } .slider:before { position: relative; content: ""; border-radius: 50%; height: 16px; width: 16px; left: 4px; top: 3px; background-color: #fff; } input:checked + .slider { background-color: #ff3034; } input:checked + .slider:before { -webkit-transform: translateX(26px); transform: translateX(26px); } select { border: 1px solid #363636; font-size: 14px; height: 22px; outline: 0; border-radius: 5px; } .image-container { position: relative; min-width: 160px; } .close { position: absolute; right: -20px; top: 5px; background: #ff3034; width: 16px; height: 16px; border-radius: 100px; color: #fff; text-align: center; line-height: 18px; cursor: pointer; } .hidden { display: none; }
         </style>
         <script src="https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
         <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>       
     </head>
     <body>
+      <div class="container">
+        <h1>Traffic Violation Detection (Horizontal Separator)</h1>
+        <p class="black-text">
+          ESP32-CAM IP Address
+        </p>
+        <div class="row mb-3">
+          <input type="text" id="ip" size="14" value="192.168." disabled>&nbsp;&nbsp;<input type="button" value="Reset" onclick="start();">
+        </div>
+      
     <figure>
-    ESP32-CAM IP：<input type="text" id="ip" size="14" value="192.168.">&nbsp;&nbsp;<input type="button" value="Reset" onclick="start();">
       <div id="stream-container" class="image-container hidden">
         <div class="close" id="close-stream">×</div>
         <img id="stream" src="" crossorigin="anonymous" style="background-color:#000000;display:none;">
         <table>
           <tr>
           <td align="left"><input type="range" id="lefttop" min="0" max="100" value="25" step="1" required></td>
-          <td align="right"><input type="range" id="righttop" min="0" max="100" value="25" step="1" required></td>
+          <td align="right"><input type="range" id="righttop" min="0" max="100" value="75" step="1" required></td>
           </tr>
           <tr>
-          <td colspan="2"><canvas id="canvas" width="320" height="240"></canvas></td>
+          <td colspan="2"><canvas id="canvas" style="background-color: #000000;"></canvas></td>
           </tr>
           <tr>
-          <td align="left"><input type="range" id="leftbottom" min="0" max="100" value="75" step="1" required></td>
+          <td align="left"><input type="range" id="leftbottom" min="0" max="100" value="25" step="1" required></td>
           <td align="right"><input type="range" id="rightbottom" min="0" max="100" value="75" step="1" required></td>
           </tr>
         </table>
       </div>
-    </figure>
+      </figure>
         <section class="main">
             <section id="buttons">
                 <table>
-                <tr><td><button id="restartButton">Restart</button></td><td><button id="toggle-stream" style="display:none">Start Stream</button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still" style="display:none;">Get Still</button></td></tr>
+                <tr><td><button id="restartButton">Restart</button></td><td><button id="toggle-stream" style="display:none">Start Camera</button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still" style="display:none;">Start Camera</button></td></tr>
                 <tr>
                   <td colspan="3">
                     <table>
                       <tbody>
-                        <tr> 
-                        <td colspan="2">
-                          Mark
-                          <select id="mark">
-                          <option value="center">Center</option>               
-                          <option value="upper">Upper</option>
-                          <option value="lower" selected="selected">Lower</option>
-                          <option value="left">Left</option>
-                          <option value="right">Right</option>
-                          </select>
-                            Object
+                      <tr> 
+                        <td align="left">
+                          Object
                             <select id="object" onchange="count.innerHTML='';">
                               <option value="person" selected="selected">person</option>
                               <option value="bicycle">bicycle</option>
@@ -334,85 +361,24 @@ static const char index_Horizontal_html[] PROGMEM = R"rawliteral(
                               <option value="bus">bus</option>
                               <option value="train">train</option>
                               <option value="truck">truck</option>
-                              <option value="boat">boat</option>
-                              <option value="traffic light">traffic light</option>
-                              <option value="fire hydrant">fire hydrant</option>
-                              <option value="stop sign">stop sign</option>
-                              <option value="parking meter">parking meter</option>
-                              <option value="bench">bench</option>
-                              <option value="bird">bird</option>
-                              <option value="cat">cat</option>
-                              <option value="dog">dog</option>
-                              <option value="horse">horse</option>
-                              <option value="sheep">sheep</option>
-                              <option value="cow">cow</option>
-                              <option value="elephant">elephant</option>
-                              <option value="bear">bear</option>
-                              <option value="zebra">zebra</option>
-                              <option value="giraffe">giraffe</option>
-                              <option value="backpack">backpack</option>
-                              <option value="umbrella">umbrella</option>
-                              <option value="handbag">handbag</option>
-                              <option value="tie">tie</option>
-                              <option value="suitcase">suitcase</option>
-                              <option value="frisbee">frisbee</option>
-                              <option value="skis">skis</option>
-                              <option value="snowboard">snowboard</option>
-                              <option value="sports ball">sports ball</option>
-                              <option value="kite">kite</option>
-                              <option value="baseball bat">baseball bat</option>
-                              <option value="baseball glove">baseball glove</option>
-                              <option value="skateboard">skateboard</option>
-                              <option value="surfboard">surfboard</option>
-                              <option value="tennis racket">tennis racket</option>
-                              <option value="bottle">bottle</option>
-                              <option value="wine glass">wine glass</option>
-                              <option value="cup">cup</option>
-                              <option value="fork">fork</option>
-                              <option value="knife">knife</option>
-                              <option value="spoon">spoon</option>
-                              <option value="bowl">bowl</option>
-                              <option value="banana">banana</option>
-                              <option value="apple">apple</option>
-                              <option value="sandwich">sandwich</option>
-                              <option value="orange">orange</option>
-                              <option value="broccoli">broccoli</option>
-                              <option value="carrot">carrot</option>
-                              <option value="hot dog">hot dog</option>
-                              <option value="pizza">pizza</option>
-                              <option value="donut">donut</option>
-                              <option value="cake">cake</option>
-                              <option value="chair">chair</option>
-                              <option value="couch">couch</option>
-                              <option value="potted plant">potted plant</option>
-                              <option value="bed">bed</option>
-                              <option value="dining table">dining table</option>
-                              <option value="toilet">toilet</option>
-                              <option value="tv">tv</option>
-                              <option value="laptop">laptop</option>
-                              <option value="mouse">mouse</option>
-                              <option value="remote">remote</option>
-                              <option value="keyboard">keyboard</option>
-                              <option value="cell phone">cell phone</option>
-                              <option value="microwave">microwave</option>
-                              <option value="oven">oven</option>
-                              <option value="toaster">toaster</option>
-                              <option value="sink">sink</option>
-                              <option value="refrigerator">refrigerator</option>
-                              <option value="book">book</option>
-                              <option value="clock">clock</option>
-                              <option value="vase">vase</option>
-                              <option value="scissors">scissors</option>
-                              <option value="teddy bear">teddy bear</option>
-                              <option value="hair drier">hair drier</option>
-                              <option value="toothbrush">toothbrush</option>
                             </select>
                             <span id="count" style="color:red">0</span>
-                        </td>             
+                        </td>          
+                        <td align="right">
+                          Marker
+                          <select id="mark">
+                          <option value="center">Center</option>               
+                          <option value="upper">Upper</option>
+                          <option value="lower" selected="selected">Lower</option>
+                          <option value="left">Left</option>
+                          <option value="right">Right</option>
+                          </select>
+                            
+                        </td>   
                       </tr>
                       <tr> 
-                        <td>
-                          Score Limit
+                        <td align="left">
+                          Score Treshold
                           <select id="score">
                           <option value="1.0">1</option>
                           <option value="0.9">0.9</option>
@@ -427,13 +393,23 @@ static const char index_Horizontal_html[] PROGMEM = R"rawliteral(
                           <option value="0">0</option>
                           </select>
                         </td>
-                        <td>
+                        <td align="right">
                         <input id="complementary" type="checkbox">Complementary Area
                         </td>           
-                      </tr>             
-                      <tr><td><input type="checkbox" id="chkAud">Alarm(mp3)</td><td><input type="text" id="aud" size="20" value="https:\/\/raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Bfrondend%5D_web/mixkit-facility-alarm-908.mp3"></td></tr> 
-                      <tr><td><input type="checkbox" id="chkBuzzer">Buzzer(IO2)</td><td></td></tr>
-                      <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
+                      </tr>          
+                      <tr>
+                        <td align="left">
+                          <input type="checkbox" id="chkAud">Alarm (mp3 files)</td>
+                        <td align="right">
+                          <input style="height: 100%;" type="text" id="aud" size="20" value="https:\/\/raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Bfrondend%5D_web/mixkit-facility-alarm-908.mp3">
+                        </td>
+                      </tr> 
+                      <tr>
+                        <td align="left" colspan="3">
+                          <input type="checkbox" id="chkBuzzer">Buzzer (GPIO 2)
+                        </td>
+                      </tr>
+                      <tr><td align="left" colspan="3"><span id="message" style="display:none"></span></td></tr> 
                     </tbody></table> 
                   </td>
                 </tr>                
@@ -497,8 +473,8 @@ static const char index_Horizontal_html[] PROGMEM = R"rawliteral(
         </section>
         <iframe id="ifr" style="display:none;position:absolute" src=""></iframe>
         <div id="position" style="display:none;color:blue;font-size:40px"></div>
-        <div id="result" style="color:red">Waiting for loading model...</div>   
-        
+        <div id="result" style="color:red">Waiting fot loading model...</div> 
+    
         <div style="display:none">
         <form id="myForm" action="https:\/\/script.google.com/macros/s/AKfycbyp1xvWg-UCSrLsL8zt-ba_0n96uNTpAFyRry9ifCnRbtK-vgg/exec" method="post" target="sendcapturedimage">
         <input type="text" id="myFilename" name="myFilename" value="Caution Area" style="display:none">
@@ -507,7 +483,7 @@ static const char index_Horizontal_html[] PROGMEM = R"rawliteral(
         </form>
         <iframe id="sendcapturedimage" name="sendcapturedimage" style="display:none"></iframe>
         </div>
-    
+      </div>
         <script>
         function start() {
             var baseHost = 'http:\/\/'+document.getElementById("ip").value;  //var baseHost = document.location.origin
@@ -814,7 +790,9 @@ static const char index_Horizontal_html[] PROGMEM = R"rawliteral(
                       if (chkAud.checked) {
                         alarm.src = aud.value;
                         alarm.play();
-                      }                    
+                      }
+                      if (chkLine.checked)
+                        ifr.src = 'http:\/\/linenotify.com/notify.php?token='+token.value+'&message=Alarm';                      
                       if (chkBuzzer.checked)
                         $.ajax({url: baseHost+'/control?buzzer='+position.innerHTML, async: false}); 
                       }
@@ -876,15 +854,23 @@ static const char index_Vertical_html[] PROGMEM = R"rawliteral(
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>Traffic Violation Detection (Vertical Separator)</title>
         <style>
-          body{font-family:Arial,Helvetica,sans-serif;background:#181818;color:#EFEFEF;font-size:16px}h2{font-size:18px}section.main{display:flex}#menu,section.main{flex-direction:column}#menu{display:none;flex-wrap:nowrap;min-width:340px;background:#363636;padding:8px;border-radius:4px;margin-top:-10px;margin-right:10px}#content{display:flex;flex-wrap:wrap;align-items:stretch}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}figure img{display:block;width:100%;height:auto;border-radius:4px;margin-top:8px}@media (min-width: 800px) and (orientation:landscape){#content{display:flex;flex-wrap:nowrap;align-items:stretch}figure img{display:block;max-width:100%;max-height:calc(100vh - 40px);width:auto;height:auto}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}}section#buttons{display:flex;flex-wrap:nowrap;justify-content:space-between}#nav-toggle{cursor:pointer;display:block}#nav-toggle-cb{outline:0;opacity:0;width:0;height:0}#nav-toggle-cb:checked+#menu{display:flex}.input-group{display:flex;flex-wrap:nowrap;line-height:22px;margin:5px 0}.input-group>label{display:inline-block;padding-right:10px;min-width:47%}.input-group input,.input-group select{flex-grow:1}.range-max,.range-min{display:inline-block;padding:0 5px}button{display:block;margin:5px;padding:0 12px;border:0;line-height:28px;cursor:pointer;color:#fff;background:#ff3034;border-radius:5px;font-size:16px;outline:0}button:hover{background:#ff494d}button:active{background:#f21c21}button.disabled{cursor:default;background:#a0a0a0}input[type=range]{-webkit-appearance:none;width:100%;height:22px;background:#363636;cursor:pointer;margin:0}input[type=range]:focus{outline:0}input[type=range]::-webkit-slider-runnable-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-webkit-slider-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;-webkit-appearance:none;margin-top:-11.5px}input[type=range]:focus::-webkit-slider-runnable-track{background:#EFEFEF}input[type=range]::-moz-range-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-moz-range-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer}input[type=range]::-ms-track{width:100%;height:2px;cursor:pointer;background:0 0;border-color:transparent;color:transparent}input[type=range]::-ms-fill-lower{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-fill-upper{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;height:2px}input[type=range]:focus::-ms-fill-lower{background:#EFEFEF}input[type=range]:focus::-ms-fill-upper{background:#363636}.switch{display:block;position:relative;line-height:22px;font-size:16px;height:22px}.switch input{outline:0;opacity:0;width:0;height:0}.slider{width:50px;height:22px;border-radius:22px;cursor:pointer;background-color:grey}.slider,.slider:before{display:inline-block;transition:.4s}.slider:before{position:relative;content:"";border-radius:50%;height:16px;width:16px;left:4px;top:3px;background-color:#fff}input:checked+.slider{background-color:#ff3034}input:checked+.slider:before{-webkit-transform:translateX(26px);transform:translateX(26px)}select{border:1px solid #363636;font-size:14px;height:22px;outline:0;border-radius:5px}.image-container{position:relative;min-width:160px}.close{position:absolute;right:5px;top:5px;background:#ff3034;width:16px;height:16px;border-radius:100px;color:#fff;text-align:center;line-height:18px;cursor:pointer}.hidden{display:none}
+          body { font-family: Arial, Helvetica, sans-serif; color: #000000; padding: auto; } h1{ color: #161616; } .container{ margin: auto; width: 90%; height: 90%; background-color: #fff; top: 0; left: 0; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; } p{ margin: 0; } .black-text{ color: #161616; } .row{ display: flex; flex-direction: row; } .mb-3{ margin-bottom: 2rem; } h2 { font-size: 18px; } td{ margin : 0.25rem; } section.main { display: flex; align-items: center; } #menu, section.main { flex-direction: column; } #menu { text-align: left; display: none; flex-wrap: nowrap; min-width: 340px; background: #e2e2e2; border: 1px solid #f21c21; padding: 8px; border-radius: 4px; margin-top: -10px; margin-right: 10px; } #content { display: flex; flex-wrap: wrap; align-items: stretch; } figure { padding: 0; margin: 0; -webkit-margin-before: 0; margin-block-start: 0; -webkit-margin-after: 0; margin-block-end: 0; -webkit-margin-start: 0; margin-inline-start: 0; -webkit-margin-end: 0; margin-inline-end: 0; } figure img { display: block; width: 100%; height: auto; border-radius: 4px; margin-top: 8px; } @media (min-width: 800px) and (orientation: landscape) { #content { display: flex; flex-wrap: nowrap; align-items: stretch; } figure img { display: block; max-width: 100%; max-height: calc(100vh - 40px); width: auto; height: auto; } figure { padding: 0; margin: 0; -webkit-margin-before: 0; margin-block-start: 0; -webkit-margin-after: 0; margin-block-end: 0; -webkit-margin-start: 0; margin-inline-start: 0; -webkit-margin-end: 0; margin-inline-end: 0; } } section#buttons { display: flex; flex-wrap: nowrap;; align-items:center; text-align: center; padding: auto; } #nav-toggle { cursor: pointer; display: block; } #nav-toggle-cb { text-align: left; outline: 0; opacity: 0; width: 0; height: 0; } #nav-toggle-cb:checked + #menu { display: flex; } .input-group { display: flex; flex-wrap: nowrap; line-height: 22px; margin: 5px 0; } .input-group > label { display: inline-block; padding-right: 10px; min-width: 47%; } .input-group input, .input-group select { flex-grow: 1; } .range-max, .range-min { display: inline-block; padding: 0 5px; } button { display: block; margin: 5px; padding: 0 12px; border: 0; line-height: 28px; cursor: pointer; color: #fff; background: #ff3034; border-radius: 5px; font-size: 16px; outline: 0; } button:hover { background: #ff494d; } button:active { background: #f21c21; } button.disabled { cursor: default; background: #a0a0a0; } input[type="range"] { -webkit-appearance: none; width: 100%; height: 22px; background: #e2e2e2; cursor: pointer; margin: 0; } input[type="range"]:focus { outline: 0; } input[type="range"]::-webkit-slider-runnable-track { width: 100%; height: 2px; cursor: pointer; background: #efefef; border-radius: 0; border: 0 solid #efefef; } input[type="range"]::-webkit-slider-thumb { border: 1px solid rgba(0, 0, 30, 0); height: 22px; width: 22px; border-radius: 50px; background: #ff3034; cursor: pointer; -webkit-appearance: none; margin-top: -11.5px; } input[type="range"]:focus::-webkit-slider-runnable-track { background: #efefef; } input[type="range"]::-moz-range-track { width: 100%; height: 2px; cursor: pointer; background: #efefef; border-radius: 0; border: 0 solid #efefef; } input[type="range"]::-moz-range-thumb { border: 1px solid rgba(0, 0, 30, 0); height: 22px; width: 22px; border-radius: 50px; background: #ff3034; cursor: pointer; } input[type="range"]::-ms-track { width: 100%; height: 2px; cursor: pointer; background: 0 0; border-color: transparent; color: transparent; } input[type="range"]::-ms-fill-lower { background: #efefef; border: 0 solid #efefef; border-radius: 0; } input[type="range"]::-ms-fill-upper { background: #efefef; border: 0 solid #efefef; border-radius: 0; } input[type="range"]::-ms-thumb { border: 1px solid rgba(0, 0, 30, 0); height: 22px; width: 22px; border-radius: 50px; background: #ff3034; cursor: pointer; height: 2px; } input[type="range"]:focus::-ms-fill-lower { background: #efefef; } input[type="range"]:focus::-ms-fill-upper { background: #363636; } .switch { display: block; position: relative; line-height: 22px; font-size: 16px; height: 22px; } .switch input { outline: 0; opacity: 0; width: 0; height: 0; } .slider { width: 50px; height: 22px; border-radius: 22px; cursor: pointer; background-color: grey; } .slider, .slider:before { display: inline-block; transition: 0.4s; } .slider:before { position: relative; content: ""; border-radius: 50%; height: 16px; width: 16px; left: 4px; top: 3px; background-color: #fff; } input:checked + .slider { background-color: #ff3034; } input:checked + .slider:before { -webkit-transform: translateX(26px); transform: translateX(26px); } select { border: 1px solid #363636; font-size: 14px; height: 22px; outline: 0; border-radius: 5px; } .image-container { position: relative; min-width: 160px; } .close { position: absolute; right: -20px; top: 5px; background: #ff3034; width: 16px; height: 16px; border-radius: 100px; color: #fff; text-align: center; line-height: 18px; cursor: pointer; } .hidden { display: none; }
         </style>
         <script src="https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
         <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>       
     </head>
     <body>
+      <div class="container">
+        <h1>Traffic Violation Detection (Vertical Separator)</h1>
+        <p class="black-text">
+          ESP32-CAM IP Address
+        </p>
+        <div class="row mb-3">
+          <input type="text" id="ip" size="14" value="192.168." disabled>&nbsp;&nbsp;<input type="button" value="Reset" onclick="start();">
+        </div>
+      
     <figure>
-    ESP32-CAM IP：<input type="text" id="ip" size="14" value="192.168.">&nbsp;&nbsp;<input type="button" value="Reset" onclick="start();">
       <div id="stream-container" class="image-container hidden">
         <div class="close" id="close-stream">×</div>
         <img id="stream" src="" crossorigin="anonymous" style="background-color:#000000;display:none;">
@@ -894,7 +880,7 @@ static const char index_Vertical_html[] PROGMEM = R"rawliteral(
           <td align="right"><input type="range" id="righttop" min="0" max="100" value="75" step="1" required></td>
           </tr>
           <tr>
-          <td colspan="2"><canvas id="canvas"></canvas></td>
+          <td colspan="2"><canvas id="canvas" style="background-color: #000000;"></canvas></td>
           </tr>
           <tr>
           <td align="left"><input type="range" id="leftbottom" min="0" max="100" value="25" step="1" required></td>
@@ -906,22 +892,14 @@ static const char index_Vertical_html[] PROGMEM = R"rawliteral(
         <section class="main">
             <section id="buttons">
                 <table>
-                <tr><td><button id="restartButton">Restart</button></td><td><button id="toggle-stream" style="display:none">Start Camera</button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still" style="display:none;">Get Still</button></td></tr>
+                <tr><td><button id="restartButton">Restart</button></td><td><button id="toggle-stream" style="display:none">Start Camera</button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still" style="display:none;">Start Camera</button></td></tr>
                 <tr>
                   <td colspan="3">
                     <table>
                       <tbody>
                       <tr> 
-                        <td colspan="2">
-                          Mark
-                          <select id="mark">
-                          <option value="center">Center</option>               
-                          <option value="upper">Upper</option>
-                          <option value="lower" selected="selected">Lower</option>
-                          <option value="left">Left</option>
-                          <option value="right">Right</option>
-                          </select>
-                            Object
+                        <td align="left">
+                          Object
                             <select id="object" onchange="count.innerHTML='';">
                               <option value="person" selected="selected">person</option>
                               <option value="bicycle">bicycle</option>
@@ -931,85 +909,24 @@ static const char index_Vertical_html[] PROGMEM = R"rawliteral(
                               <option value="bus">bus</option>
                               <option value="train">train</option>
                               <option value="truck">truck</option>
-                              <option value="boat">boat</option>
-                              <option value="traffic light">traffic light</option>
-                              <option value="fire hydrant">fire hydrant</option>
-                              <option value="stop sign">stop sign</option>
-                              <option value="parking meter">parking meter</option>
-                              <option value="bench">bench</option>
-                              <option value="bird">bird</option>
-                              <option value="cat">cat</option>
-                              <option value="dog">dog</option>
-                              <option value="horse">horse</option>
-                              <option value="sheep">sheep</option>
-                              <option value="cow">cow</option>
-                              <option value="elephant">elephant</option>
-                              <option value="bear">bear</option>
-                              <option value="zebra">zebra</option>
-                              <option value="giraffe">giraffe</option>
-                              <option value="backpack">backpack</option>
-                              <option value="umbrella">umbrella</option>
-                              <option value="handbag">handbag</option>
-                              <option value="tie">tie</option>
-                              <option value="suitcase">suitcase</option>
-                              <option value="frisbee">frisbee</option>
-                              <option value="skis">skis</option>
-                              <option value="snowboard">snowboard</option>
-                              <option value="sports ball">sports ball</option>
-                              <option value="kite">kite</option>
-                              <option value="baseball bat">baseball bat</option>
-                              <option value="baseball glove">baseball glove</option>
-                              <option value="skateboard">skateboard</option>
-                              <option value="surfboard">surfboard</option>
-                              <option value="tennis racket">tennis racket</option>
-                              <option value="bottle">bottle</option>
-                              <option value="wine glass">wine glass</option>
-                              <option value="cup">cup</option>
-                              <option value="fork">fork</option>
-                              <option value="knife">knife</option>
-                              <option value="spoon">spoon</option>
-                              <option value="bowl">bowl</option>
-                              <option value="banana">banana</option>
-                              <option value="apple">apple</option>
-                              <option value="sandwich">sandwich</option>
-                              <option value="orange">orange</option>
-                              <option value="broccoli">broccoli</option>
-                              <option value="carrot">carrot</option>
-                              <option value="hot dog">hot dog</option>
-                              <option value="pizza">pizza</option>
-                              <option value="donut">donut</option>
-                              <option value="cake">cake</option>
-                              <option value="chair">chair</option>
-                              <option value="couch">couch</option>
-                              <option value="potted plant">potted plant</option>
-                              <option value="bed">bed</option>
-                              <option value="dining table">dining table</option>
-                              <option value="toilet">toilet</option>
-                              <option value="tv">tv</option>
-                              <option value="laptop">laptop</option>
-                              <option value="mouse">mouse</option>
-                              <option value="remote">remote</option>
-                              <option value="keyboard">keyboard</option>
-                              <option value="cell phone">cell phone</option>
-                              <option value="microwave">microwave</option>
-                              <option value="oven">oven</option>
-                              <option value="toaster">toaster</option>
-                              <option value="sink">sink</option>
-                              <option value="refrigerator">refrigerator</option>
-                              <option value="book">book</option>
-                              <option value="clock">clock</option>
-                              <option value="vase">vase</option>
-                              <option value="scissors">scissors</option>
-                              <option value="teddy bear">teddy bear</option>
-                              <option value="hair drier">hair drier</option>
-                              <option value="toothbrush">toothbrush</option>
                             </select>
                             <span id="count" style="color:red">0</span>
-                        </td>             
+                        </td>          
+                        <td align="right">
+                          Marker
+                          <select id="mark">
+                          <option value="center">Center</option>               
+                          <option value="upper">Upper</option>
+                          <option value="lower" selected="selected">Lower</option>
+                          <option value="left">Left</option>
+                          <option value="right">Right</option>
+                          </select>
+                            
+                        </td>   
                       </tr>
                       <tr> 
-                        <td>
-                          Score Limit
+                        <td align="left">
+                          Score Treshold
                           <select id="score">
                           <option value="1.0">1</option>
                           <option value="0.9">0.9</option>
@@ -1024,13 +941,23 @@ static const char index_Vertical_html[] PROGMEM = R"rawliteral(
                           <option value="0">0</option>
                           </select>
                         </td>
-                        <td>
+                        <td align="right">
                         <input id="complementary" type="checkbox">Complementary Area
                         </td>           
                       </tr>          
-                      <tr><td><input type="checkbox" id="chkAud">Alarm(mp3)</td><td><input type="text" id="aud" size="20" value="https:\/\/raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Bfrondend%5D_web/mixkit-facility-alarm-908.mp3"></td></tr> 
-                      <tr><td><input type="checkbox" id="chkBuzzer">Buzzer(GPIO 2)</td><td></td></tr>
-                      <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
+                      <tr>
+                        <td align="left">
+                          <input type="checkbox" id="chkAud">Alarm (mp3 files)</td>
+                        <td align="right">
+                          <input style="height: 100%;" type="text" id="aud" size="20" value="https:\/\/raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Bfrondend%5D_web/mixkit-facility-alarm-908.mp3">
+                        </td>
+                      </tr> 
+                      <tr>
+                        <td align="left" colspan="3">
+                          <input type="checkbox" id="chkBuzzer">Buzzer (GPIO 2)
+                        </td>
+                      </tr>
+                      <tr><td align="left" colspan="3"><span id="message" style="display:none"></span></td></tr> 
                     </tbody></table> 
                   </td>
                 </tr>                
@@ -1104,7 +1031,7 @@ static const char index_Vertical_html[] PROGMEM = R"rawliteral(
         </form>
         <iframe id="sendcapturedimage" name="sendcapturedimage" style="display:none"></iframe>
         </div>
-    
+      </div>
         <script>
         function start() {
           var baseHost = 'http:\/\/'+document.getElementById("ip").value;  //var baseHost = document.location.origin
@@ -1443,46 +1370,59 @@ static const char index_Vertical_html[] PROGMEM = R"rawliteral(
 )rawliteral";
 
 static const char index_Rectangular_html[] PROGMEM = R"rawliteral(
+<!DOCTYPE html>
 <html>
   <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>Traffic Violation Detection (Rectangular Separator)</title>
         <style>
-          body{font-family:Arial,Helvetica,sans-serif;background:#181818;color:#EFEFEF;font-size:16px}h2{font-size:18px}section.main{display:flex}#menu,section.main{flex-direction:column}#menu{display:none;flex-wrap:nowrap;min-width:340px;background:#363636;padding:8px;border-radius:4px;margin-top:-10px;margin-right:10px}#content{display:flex;flex-wrap:wrap;align-items:stretch}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}figure img{display:block;width:100%;height:auto;border-radius:4px;margin-top:8px}@media (min-width: 800px) and (orientation:landscape){#content{display:flex;flex-wrap:nowrap;align-items:stretch}figure img{display:block;max-width:100%;max-height:calc(100vh - 40px);width:auto;height:auto}figure{padding:0;margin:0;-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margin-block-end:0;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:0;margin-inline-end:0}}section#buttons{display:flex;flex-wrap:nowrap;justify-content:space-between}#nav-toggle{cursor:pointer;display:block}#nav-toggle-cb{outline:0;opacity:0;width:0;height:0}#nav-toggle-cb:checked+#menu{display:flex}.input-group{display:flex;flex-wrap:nowrap;line-height:22px;margin:5px 0}.input-group>label{display:inline-block;padding-right:10px;min-width:47%}.input-group input,.input-group select{flex-grow:1}.range-max,.range-min{display:inline-block;padding:0 5px}button{display:block;margin:5px;padding:0 12px;border:0;line-height:28px;cursor:pointer;color:#fff;background:#ff3034;border-radius:5px;font-size:16px;outline:0}button:hover{background:#ff494d}button:active{background:#f21c21}button.disabled{cursor:default;background:#a0a0a0}input[type=range]{-webkit-appearance:none;width:100%;height:22px;background:#363636;cursor:pointer;margin:0}input[type=range]:focus{outline:0}input[type=range]::-webkit-slider-runnable-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-webkit-slider-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;-webkit-appearance:none;margin-top:-11.5px}input[type=range]:focus::-webkit-slider-runnable-track{background:#EFEFEF}input[type=range]::-moz-range-track{width:100%;height:2px;cursor:pointer;background:#EFEFEF;border-radius:0;border:0 solid #EFEFEF}input[type=range]::-moz-range-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer}input[type=range]::-ms-track{width:100%;height:2px;cursor:pointer;background:0 0;border-color:transparent;color:transparent}input[type=range]::-ms-fill-lower{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-fill-upper{background:#EFEFEF;border:0 solid #EFEFEF;border-radius:0}input[type=range]::-ms-thumb{border:1px solid rgba(0,0,30,0);height:22px;width:22px;border-radius:50px;background:#ff3034;cursor:pointer;height:2px}input[type=range]:focus::-ms-fill-lower{background:#EFEFEF}input[type=range]:focus::-ms-fill-upper{background:#363636}.switch{display:block;position:relative;line-height:22px;font-size:16px;height:22px}.switch input{outline:0;opacity:0;width:0;height:0}.slider{width:50px;height:22px;border-radius:22px;cursor:pointer;background-color:grey}.slider,.slider:before{display:inline-block;transition:.4s}.slider:before{position:relative;content:"";border-radius:50%;height:16px;width:16px;left:4px;top:3px;background-color:#fff}input:checked+.slider{background-color:#ff3034}input:checked+.slider:before{-webkit-transform:translateX(26px);transform:translateX(26px)}select{border:1px solid #363636;font-size:14px;height:22px;outline:0;border-radius:5px}.image-container{position:relative;min-width:160px}.close{position:absolute;right:5px;top:5px;background:#ff3034;width:16px;height:16px;border-radius:100px;color:#fff;text-align:center;line-height:18px;cursor:pointer}.hidden{display:none}
+          body { font-family: Arial, Helvetica, sans-serif; color: #000000; padding: auto; } h1{ color: #161616; } .container{ margin: auto; width: 90%; height: 90%; background-color: #fff; top: 0; left: 0; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; } p{ margin: 0; } .black-text{ color: #161616; } .row{ display: flex; flex-direction: row; } .mb-3{ margin-bottom: 2rem; } h2 { font-size: 18px; } td{ margin : 0.25rem; } section.main { display: flex; align-items: center; } #menu, section.main { flex-direction: column; } #menu { text-align: left; display: none; flex-wrap: nowrap; min-width: 340px; background: #e2e2e2; border: 1px solid #f21c21; padding: 8px; border-radius: 4px; margin-top: -10px; margin-right: 10px; } #content { display: flex; flex-wrap: wrap; align-items: stretch; } figure { padding: 0; margin: 0; -webkit-margin-before: 0; margin-block-start: 0; -webkit-margin-after: 0; margin-block-end: 0; -webkit-margin-start: 0; margin-inline-start: 0; -webkit-margin-end: 0; margin-inline-end: 0; } figure img { display: block; width: 100%; height: auto; border-radius: 4px; margin-top: 8px; } @media (min-width: 800px) and (orientation: landscape) { #content { display: flex; flex-wrap: nowrap; align-items: stretch; } figure img { display: block; max-width: 100%; max-height: calc(100vh - 40px); width: auto; height: auto; } figure { padding: 0; margin: 0; -webkit-margin-before: 0; margin-block-start: 0; -webkit-margin-after: 0; margin-block-end: 0; -webkit-margin-start: 0; margin-inline-start: 0; -webkit-margin-end: 0; margin-inline-end: 0; } } section#buttons { display: flex; flex-wrap: nowrap;; align-items:center; text-align: center; padding: auto; } #nav-toggle { cursor: pointer; display: block; } #nav-toggle-cb { text-align: left; outline: 0; opacity: 0; width: 0; height: 0; } #nav-toggle-cb:checked + #menu { display: flex; } .input-group { display: flex; flex-wrap: nowrap; line-height: 22px; margin: 5px 0; } .input-group > label { display: inline-block; padding-right: 10px; min-width: 47%; } .input-group input, .input-group select { flex-grow: 1; } .range-max, .range-min { display: inline-block; padding: 0 5px; } button { display: block; margin: 5px; padding: 0 12px; border: 0; line-height: 28px; cursor: pointer; color: #fff; background: #ff3034; border-radius: 5px; font-size: 16px; outline: 0; } button:hover { background: #ff494d; } button:active { background: #f21c21; } button.disabled { cursor: default; background: #a0a0a0; } input[type="range"] { -webkit-appearance: none; width: 100%; height: 22px; background: #e2e2e2; cursor: pointer; margin: 0; } input[type="range"]:focus { outline: 0; } input[type="range"]::-webkit-slider-runnable-track { width: 100%; height: 2px; cursor: pointer; background: #efefef; border-radius: 0; border: 0 solid #efefef; } input[type="range"]::-webkit-slider-thumb { border: 1px solid rgba(0, 0, 30, 0); height: 22px; width: 22px; border-radius: 50px; background: #ff3034; cursor: pointer; -webkit-appearance: none; margin-top: -11.5px; } input[type="range"]:focus::-webkit-slider-runnable-track { background: #efefef; } input[type="range"]::-moz-range-track { width: 100%; height: 2px; cursor: pointer; background: #efefef; border-radius: 0; border: 0 solid #efefef; } input[type="range"]::-moz-range-thumb { border: 1px solid rgba(0, 0, 30, 0); height: 22px; width: 22px; border-radius: 50px; background: #ff3034; cursor: pointer; } input[type="range"]::-ms-track { width: 100%; height: 2px; cursor: pointer; background: 0 0; border-color: transparent; color: transparent; } input[type="range"]::-ms-fill-lower { background: #efefef; border: 0 solid #efefef; border-radius: 0; } input[type="range"]::-ms-fill-upper { background: #efefef; border: 0 solid #efefef; border-radius: 0; } input[type="range"]::-ms-thumb { border: 1px solid rgba(0, 0, 30, 0); height: 22px; width: 22px; border-radius: 50px; background: #ff3034; cursor: pointer; height: 2px; } input[type="range"]:focus::-ms-fill-lower { background: #efefef; } input[type="range"]:focus::-ms-fill-upper { background: #363636; } .switch { display: block; position: relative; line-height: 22px; font-size: 16px; height: 22px; } .switch input { outline: 0; opacity: 0; width: 0; height: 0; } .slider { width: 50px; height: 22px; border-radius: 22px; cursor: pointer; background-color: grey; } .slider, .slider:before { display: inline-block; transition: 0.4s; } .slider:before { position: relative; content: ""; border-radius: 50%; height: 16px; width: 16px; left: 4px; top: 3px; background-color: #fff; } input:checked + .slider { background-color: #ff3034; } input:checked + .slider:before { -webkit-transform: translateX(26px); transform: translateX(26px); } select { border: 1px solid #363636; font-size: 14px; height: 22px; outline: 0; border-radius: 5px; } .image-container { position: relative; min-width: 160px; } .close { position: absolute; right: -20px; top: 5px; background: #ff3034; width: 16px; height: 16px; border-radius: 100px; color: #fff; text-align: center; line-height: 18px; cursor: pointer; } .hidden { display: none; }
         </style>
         <script src="https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"> </script>
         <script src="https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.1.0"> </script>       
     </head>
     <body>
+      <div class="container">
+        <h1>Traffic Violation Detection (Rectangular Separator)</h1>
+        <p class="black-text">
+          ESP32-CAM IP Address
+        </p>
+        <div class="row mb-3">
+          <input type="text" id="ip" size="14" value="192.168." disabled>&nbsp;&nbsp;<input type="button" value="Reset" onclick="start();">
+        </div>
+      
     <figure>
-    ESP32-CAM IP：<input type="text" id="ip" size="14" value="192.168.">&nbsp;&nbsp;<input type="button" value="Reset" onclick="start();">
-      <div id="stream-container" class="image-container">
+      <div id="stream-container" class="image-container hidden">
         <div class="close" id="close-stream">×</div>
         <img id="stream" src="" crossorigin="anonymous" style="background-color:#000000;display:none;">
-        <canvas id="canvas" style="display:none;"></canvas>
+        <table>
+          <tr>
+          <td align="left"><input type="range" id="lefttop" min="0" max="100" value="25" step="1" required></td>
+          <td align="right"><input type="range" id="righttop" min="0" max="100" value="75" step="1" required></td>
+          </tr>
+          <tr>
+          <td colspan="2"><canvas id="canvas" style="background-color: #000000;"></canvas></td>
+          </tr>
+          <tr>
+          <td align="left"><input type="range" id="leftbottom" min="0" max="100" value="25" step="1" required></td>
+          <td align="right"><input type="range" id="rightbottom" min="0" max="100" value="75" step="1" required></td>
+          </tr>
+        </table>
       </div>
-    </figure>
+      </figure>
         <section class="main">
             <section id="buttons">
                 <table>
-                <tr><td><button id="restartButton">Restart</button></td><td><button id="toggle-stream" style="display:none">Start Stream</button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still" style="display:none;">Get Still</button></td></tr>
+                <tr><td><button id="restartButton">Restart</button></td><td><button id="toggle-stream" style="display:none">Start Camera</button></td><td align="right"><button id="face_enroll" style="display:none" class="disabled" disabled="disabled"></button><button id="get-still" style="display:none;">Start Camera</button></td></tr>
                 <tr>
                   <td colspan="3">
                     <table>
                       <tbody>
                       <tr> 
-                        <td colspan="2">
-                          Mark
-                          <select id="mark">
-                          <option value="center">Center</option>               
-                          <option value="upper">Upper</option>
-                          <option value="lower" selected="selected">Lower</option>
-                          <option value="left">Left</option>
-                          <option value="right">Right</option>
-                          </select>
-                            Objet
+                        <td align="left">
+                          Object
                             <select id="object" onchange="count.innerHTML='';">
                               <option value="person" selected="selected">person</option>
                               <option value="bicycle">bicycle</option>
@@ -1492,85 +1432,24 @@ static const char index_Rectangular_html[] PROGMEM = R"rawliteral(
                               <option value="bus">bus</option>
                               <option value="train">train</option>
                               <option value="truck">truck</option>
-                              <option value="boat">boat</option>
-                              <option value="traffic light">traffic light</option>
-                              <option value="fire hydrant">fire hydrant</option>
-                              <option value="stop sign">stop sign</option>
-                              <option value="parking meter">parking meter</option>
-                              <option value="bench">bench</option>
-                              <option value="bird">bird</option>
-                              <option value="cat">cat</option>
-                              <option value="dog">dog</option>
-                              <option value="horse">horse</option>
-                              <option value="sheep">sheep</option>
-                              <option value="cow">cow</option>
-                              <option value="elephant">elephant</option>
-                              <option value="bear">bear</option>
-                              <option value="zebra">zebra</option>
-                              <option value="giraffe">giraffe</option>
-                              <option value="backpack">backpack</option>
-                              <option value="umbrella">umbrella</option>
-                              <option value="handbag">handbag</option>
-                              <option value="tie">tie</option>
-                              <option value="suitcase">suitcase</option>
-                              <option value="frisbee">frisbee</option>
-                              <option value="skis">skis</option>
-                              <option value="snowboard">snowboard</option>
-                              <option value="sports ball">sports ball</option>
-                              <option value="kite">kite</option>
-                              <option value="baseball bat">baseball bat</option>
-                              <option value="baseball glove">baseball glove</option>
-                              <option value="skateboard">skateboard</option>
-                              <option value="surfboard">surfboard</option>
-                              <option value="tennis racket">tennis racket</option>
-                              <option value="bottle">bottle</option>
-                              <option value="wine glass">wine glass</option>
-                              <option value="cup">cup</option>
-                              <option value="fork">fork</option>
-                              <option value="knife">knife</option>
-                              <option value="spoon">spoon</option>
-                              <option value="bowl">bowl</option>
-                              <option value="banana">banana</option>
-                              <option value="apple">apple</option>
-                              <option value="sandwich">sandwich</option>
-                              <option value="orange">orange</option>
-                              <option value="broccoli">broccoli</option>
-                              <option value="carrot">carrot</option>
-                              <option value="hot dog">hot dog</option>
-                              <option value="pizza">pizza</option>
-                              <option value="donut">donut</option>
-                              <option value="cake">cake</option>
-                              <option value="chair">chair</option>
-                              <option value="couch">couch</option>
-                              <option value="potted plant">potted plant</option>
-                              <option value="bed">bed</option>
-                              <option value="dining table">dining table</option>
-                              <option value="toilet">toilet</option>
-                              <option value="tv">tv</option>
-                              <option value="laptop">laptop</option>
-                              <option value="mouse">mouse</option>
-                              <option value="remote">remote</option>
-                              <option value="keyboard">keyboard</option>
-                              <option value="cell phone">cell phone</option>
-                              <option value="microwave">microwave</option>
-                              <option value="oven">oven</option>
-                              <option value="toaster">toaster</option>
-                              <option value="sink">sink</option>
-                              <option value="refrigerator">refrigerator</option>
-                              <option value="book">book</option>
-                              <option value="clock">clock</option>
-                              <option value="vase">vase</option>
-                              <option value="scissors">scissors</option>
-                              <option value="teddy bear">teddy bear</option>
-                              <option value="hair drier">hair drier</option>
-                              <option value="toothbrush">toothbrush</option>
                             </select>
                             <span id="count" style="color:red">0</span>
-                        </td>             
+                        </td>          
+                        <td align="right">
+                          Marker
+                          <select id="mark">
+                          <option value="center">Center</option>               
+                          <option value="upper">Upper</option>
+                          <option value="lower" selected="selected">Lower</option>
+                          <option value="left">Left</option>
+                          <option value="right">Right</option>
+                          </select>
+                            
+                        </td>   
                       </tr>
                       <tr> 
-                        <td>
-                          Score Limit
+                        <td align="left">
+                          Score Treshold
                           <select id="score">
                           <option value="1.0">1</option>
                           <option value="0.9">0.9</option>
@@ -1585,13 +1464,23 @@ static const char index_Rectangular_html[] PROGMEM = R"rawliteral(
                           <option value="0">0</option>
                           </select>
                         </td>
-                        <td>
-                          <input id="complementary" type="checkbox">Complementary Area
+                        <td align="right">
+                        <input id="complementary" type="checkbox">Complementary Area
+                        </td>           
+                      </tr>          
+                      <tr>
+                        <td align="left">
+                          <input type="checkbox" id="chkAud">Alarm (mp3 files)</td>
+                        <td align="right">
+                          <input style="height: 100%;" type="text" id="aud" size="20" value="https:\/\/raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Bfrondend%5D_web/mixkit-facility-alarm-908.mp3">
                         </td>
-                      </tr>         
-                      <tr><td><input type="checkbox" id="chkAud">Alarm(mp3)</td><td><input type="text" id="aud" size="20" value="https:\/\/raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Bfrondend%5D_web/mixkit-facility-alarm-908.mp3"></td></tr> 
-                      <tr><td><input type="checkbox" id="chkBuzzer">Buzzer(IO2)</td><td></td></tr>
-                      <tr><td colspan="2"><span id="message" style="display:none"></span></td><td></td></tr> 
+                      </tr> 
+                      <tr>
+                        <td align="left" colspan="3">
+                          <input type="checkbox" id="chkBuzzer">Buzzer (GPIO 2)
+                        </td>
+                      </tr>
+                      <tr><td align="left" colspan="3"><span id="message" style="display:none"></span></td></tr> 
                     </tbody></table> 
                   </td>
                 </tr>                
@@ -1655,7 +1544,7 @@ static const char index_Rectangular_html[] PROGMEM = R"rawliteral(
         </section>
         <iframe id="ifr" style="display:none;position:absolute" src=""></iframe>
         <div id="position" style="display:none;color:blue;font-size:40px"></div>
-        <div id="result" style="color:red">Waiting for loading model...</div> 
+        <div id="result" style="color:red">Waiting fot loading model...</div> 
     
         <div style="display:none">
         <form id="myForm" action="https:\/\/script.google.com/macros/s/AKfycbyp1xvWg-UCSrLsL8zt-ba_0n96uNTpAFyRry9ifCnRbtK-vgg/exec" method="post" target="sendcapturedimage">
@@ -1665,7 +1554,7 @@ static const char index_Rectangular_html[] PROGMEM = R"rawliteral(
         </form>
         <iframe id="sendcapturedimage" name="sendcapturedimage" style="display:none"></iframe>
         </div>
-    
+      </div>
         <script>
         function start() {
             var baseHost = 'http:\/\/'+document.getElementById("ip").value;  //var baseHost = document.location.origin
