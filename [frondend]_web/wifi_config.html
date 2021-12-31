@@ -3,11 +3,25 @@
       <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width,initial-scale=1">
+          <link rel="stylesheet" href="styles.css">
           <title>Wifi Configuration - Traffic Violation Detection</title>  
       </head>
       <body>
-      WIFI SSID: <input type="text" id="ssid"><br>
-      WIFI Password: <input type="text" id="pwd"><br>
-      <input type="button" value="Set Wifi!" onclick="location.href='/control?resetwifi='+document.getElementById('ssid').value+';'+document.getElementById('pwd').value;">
+        <div class="wifi-config">
+            <h1><b>Wifi Configuration Setup</b></h1>
+            <form class="wifi-config-form">
+                <div class="wifi-config-form">
+                    <label for="ssid"><b>Wifi SSID</b></label>
+                    <input type="text" name="ssid" id="ssid" placeholder="SSID" class="wifi-config-form-field">
+                </div>
+                <div class="wifi-config-form">
+                    <label for="password"><b>Wifi Password</b></label>
+                    <input type="password" name="password" id="pwd" placeholder="Password" class="wifi-config-form-field">
+                </div>
+                <div class="wifi-config-form">
+                    <input class="button" type="button" value="Set Wifi!" onclick="location.href='/control?resetwifi='+document.getElementById('ssid').value+';'+document.getElementById('pwd').value;">
+                </div>
+            </form>
+        </div>  
       </body>
   </html>        
