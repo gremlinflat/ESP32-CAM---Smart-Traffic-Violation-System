@@ -22,6 +22,9 @@ Wiring diagram
 ![wiring diagram](https://raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Breadme%5D/wiring%20diagram.jpg)
 ## Instalations
 //dont forget to downgrade esp32 to version 1.0.4
+
+## Known Bugs
+- Wifi SSID Configuration doesn't support space character (ssid that contain any space)
 ## References
 [Pretrained Machine Learning models (COCO-SSD)](https://github.com/tensorflow/tfjs-models)
 
