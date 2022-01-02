@@ -3,16 +3,27 @@ Traffic Violation Detection System is a system that utilize machine learning and
 
 
 this project is an Embedded System Final Project developed by **Group 18**
+<p align="center">
+
 Group Member | Student ID
 ------------- | -------------
 Fahri Novaldi  | 119140205
 Iqbal Amrulloh | 119140161
+
+</p>
+
+## Preview
+
+Real-Life Demo on Motorcycle:
+
+https://github.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/blob/master/%5Breadme%5D/System%20Demo%20On%20Motorcycle.mp4
 
 ## Requirements & Dependencies
 This Project is build over giant shoulder such
 * ESP32-Cam library by espressif
 * Tensorflow lite by google
 * coco-ssd pretrained model by tf community
+
 ## How does it works?
 ![Architecure System](https://raw.githubusercontent.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/master/%5Breadme%5D/System%20Architecture.png)
 
