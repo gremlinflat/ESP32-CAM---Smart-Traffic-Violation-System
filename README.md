@@ -19,7 +19,6 @@ Real-Life Demo on Motorcycle:
 https://user-images.githubusercontent.com/25357458/147871933-c87be292-8da1-4728-bfdb-cac8288eda02.mp4
 
 
-
 ## Requirements & Dependencies
 This Project is build over giant shoulder such
 * ESP32-Cam library by espressif
@@ -36,8 +35,9 @@ Wiring diagram
 ## Instalations
 //dont forget to downgrade esp32 to version 1.0.4
 
-## Known Bugs
+## Known Issue/Bug
 - Wifi SSID Configuration doesn't support space character (ssid that contain any space)
+- Apple's Safari doesn't trigger the alarm when an object anchor passing the boundary (javascript related)
 ## References
 [Pretrained Machine Learning models (COCO-SSD)](https://github.com/tensorflow/tfjs-models)
 
