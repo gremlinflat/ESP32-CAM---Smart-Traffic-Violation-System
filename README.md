@@ -16,7 +16,9 @@ Iqbal Amrulloh | 119140161
 
 Real-Life Demo on Motorcycle:
 
-https://github.com/gremlinflat/ESP32-CAM---Smart-Traffic-Violation-System/blob/master/%5Breadme%5D/System%20Demo%20On%20Motorcycle.mp4
+https://user-images.githubusercontent.com/25357458/147871933-c87be292-8da1-4728-bfdb-cac8288eda02.mp4
+
+
 
 ## Requirements & Dependencies
 This Project is build over giant shoulder such
